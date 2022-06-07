@@ -4,6 +4,9 @@ package ITEM;
  * this is an object settings used for inventory space upgrades and setting the amount of spaces
  */
 public class Space {
+    // space slot for starting inventory
+    private int maxStartSpaceCnt = 10;
+
     // available upgrade inventory space amount
     private int maxSpaceCnt = 5;
 
@@ -25,5 +28,13 @@ public class Space {
 
     public void setMaxUpgradeCnt(int maxUpgradeCnt) {
         this.maxUpgradeCnt = maxUpgradeCnt;
+    }
+
+    public int getMaxStartSpaceCnt() {
+        return maxStartSpaceCnt;
+    }
+
+    public void setMaxStartSpaceCnt(int maxStartSpaceCnt) {
+        this.maxStartSpaceCnt = maxStartSpaceCnt;
     }
 }

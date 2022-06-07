@@ -1,5 +1,7 @@
 package INVENTORY;
 
+import ITEM.Space;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,35 +14,57 @@ public class Inventory {
      * like I mentioned above, this class is going to be a dynamic class used all around the project
      * so the Inventory will be static (moved by pointer memory)
      */
-    static HashMap<String, Object> INVENTORY = new HashMap<>();
+    static HashMap<String, Object> INVENTORY;
 
     // available upgrade inventory space amount
-    private int maxSpaceCnt = 5;
+    ArrayList gearSlot   = new ArrayList<>();
+    ArrayList weaponSlot = new ArrayList<>();
+    ArrayList potionSlot   = new ArrayList<>();
 
     // number of counts available to upgrade
     // which means you can only upgrade your inventory 3 times
-    private int maxUpgradeCnt = 3;
-    private int startFoodAmount;
+    private int maxUpgradeCnt;
+    private int maxSpaceCnt;
+    private int currentSpaceCnt;
 
-    // TODO need to plan a structure for amounts of food or will it be also for weapons and gears?
+    private int startFoodAmount;
     private int amount;
-    ArrayList gearSlot = new ArrayList<>();
-    ArrayList weaponSlot = new ArrayList<>();
-    ArrayList foodSlot = new ArrayList<>();
 
     // beginning initiation for creating inventory class & upgrading inventory slot spaces
-    public Inventory(int maxUpgradeCnt, int maxSpaceCnt, int startFoodAmount){
+    public Inventory(int startFoodAmount, ArrayList gearList, ArrayList potionList, ArrayList weaponList){
+        Space space = new Space();
         // inventory settings criteria
-        this.maxSpaceCnt   = maxUpgradeCnt;
-        this.maxUpgradeCnt = maxSpaceCnt;
+        maxSpaceCnt     = space.getMaxSpaceCnt();
+        maxUpgradeCnt   = space.getMaxUpgradeCnt();
+        currentSpaceCnt = space.getMaxStartSpaceCnt();
 
         // amount of shrimps started
         this.startFoodAmount = startFoodAmount;
     }
 
-    public void inventoryUpdate(){
+    // inventory wipe out
+    public void clearInventory(){
+        INVENTORY = new HashMap<>();
         INVENTORY.put("GEAR", gearSlot);
         INVENTORY.put("WEAPON", weaponSlot);
-        INVENTORY.put("FOOD", foodSlot);
+        INVENTORY.put("POTION", potionSlot);
+    }
+
+    /*
+     * param: condition, index, amount
+     */
+    public String inventoryValidation(String condition, int index, int amount){
+        if(condition.equals("USE")){
+
+        }
+        else if(condition.equals("ADD")){
+
+        }
+
+        return "";
+    }
+
+    public void inventoryUpdate(){
+        // global variable initialize
     }
 }

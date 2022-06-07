@@ -1,6 +1,7 @@
 package INIT;
 
 import ITEM.*;
+import INVENTORY.*;
 
 import java.util.ArrayList;
 
@@ -15,11 +16,22 @@ public class InitObject {
     Gear gearItem;
     Potion potionItem;
     Weapon weaponItem;
+    Inventory inventory;
+
+    Space spaceObject = new Space();
+    int maxUpgradeCnt;
+    int maxSpaceCnt;
 
     // Initiation
     public InitObject(){
 
-        // Initiate create gear
+        // initiate inventory settings
+        this.maxUpgradeCnt = spaceObject.getMaxUpgradeCnt();
+        this.maxSpaceCnt   = spaceObject.getMaxSpaceCnt();
+        // creating inventory
+        Inventory inventoryInit = new Inventory(maxUpgradeCnt, maxSpaceCnt);
+
+        // initiate create gear
         gearItem = new Gear("Bronze gear", 10, 10);
         gearList.add(gearItem);
 
@@ -41,7 +53,7 @@ public class InitObject {
         gearItem = new Gear("Dragon gear", 40, 40);
         gearList.add(gearItem);
 
-        // Initiate create potion
+        // initiate create potion
         potionItem = new Potion("Shrimp", 1, 3);
         potionList.add(potionItem);
 
@@ -57,6 +69,26 @@ public class InitObject {
         potionItem = new Potion("Mantray", 15, 15);
         potionList.add(potionItem);
 
+        // initiate create weapon
+        weaponItem = new Weapon("Bronze sword", 20, 10);
+        weaponList.add(weaponItem);
 
+        weaponItem = new Weapon("Iron sword", 30, 20);
+        weaponList.add(weaponItem);
+
+        weaponItem = new Weapon("Steel sword", 40, 30);
+        weaponList.add(weaponItem);
+
+        weaponItem = new Weapon("Black sword", 50, 40);
+        weaponList.add(weaponItem);
+
+        weaponItem = new Weapon("Mithril sword", 60, 50);
+        weaponList.add(weaponItem);
+
+        weaponItem = new Weapon("Adamant sword", 70, 60);
+        weaponList.add(weaponItem);
+
+        weaponItem = new Weapon("Dragon sword", 80, 70);
+        weaponList.add(weaponItem);
     }
 }

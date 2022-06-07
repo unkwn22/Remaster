@@ -10,7 +10,7 @@ public class Gear {
     public Gear(String name, int cost, int def){
         this.name = name;
         this.cost = cost;
-        this.def = def;
+        this.def  = def;
     }
 
     public String getName() {

@@ -10,7 +10,7 @@ public class Weapon {
     public Weapon(String name, int cost, int dmg){
         this.name = name;
         this.cost = cost;
-        this.dmg = dmg;
+        this.dmg  = dmg;
     }
 
     public String getName() {

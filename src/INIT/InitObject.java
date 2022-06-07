@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 // object, item, structure create(initiation)
 public class InitObject {
-
     // Base criteria list
     ArrayList<Gear> gearList = new ArrayList<>();
     ArrayList<Potion> potionList = new ArrayList<>();
@@ -27,7 +26,6 @@ public class InitObject {
 
     // Initiation
     public InitObject(){
-
         // initiate inventory settings
         this.maxUpgradeCnt = spaceObject.getMaxUpgradeCnt();
         this.maxSpaceCnt   = spaceObject.getMaxSpaceCnt();

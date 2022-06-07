@@ -4,7 +4,6 @@ package ITEM;
  * this is an object settings used for inventory space upgrades and setting the amount of spaces
  */
 public class Space {
-
     // available upgrade inventory space amount
     private int maxSpaceCnt = 5;
 

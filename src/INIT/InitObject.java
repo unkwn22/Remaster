@@ -22,14 +22,15 @@ public class InitObject {
     int maxUpgradeCnt;
     int maxSpaceCnt;
 
+    // starting amount of shrimps
+    int startFoodAmount = 5;
+
     // Initiation
     public InitObject(){
 
         // initiate inventory settings
         this.maxUpgradeCnt = spaceObject.getMaxUpgradeCnt();
         this.maxSpaceCnt   = spaceObject.getMaxSpaceCnt();
-        // creating inventory
-        Inventory inventoryInit = new Inventory(maxUpgradeCnt, maxSpaceCnt);
 
         // initiate create gear
         gearItem = new Gear("Bronze gear", 10, 10);
@@ -90,5 +91,8 @@ public class InitObject {
 
         weaponItem = new Weapon("Dragon sword", 80, 70);
         weaponList.add(weaponItem);
+
+        // creating inventory
+        Inventory inventoryInit = new Inventory(maxUpgradeCnt, maxSpaceCnt, startFoodAmount);
     }
 }

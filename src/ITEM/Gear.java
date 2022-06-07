@@ -1,7 +1,6 @@
 package ITEM;
 
 public class Gear {
-
     String name;
     int cost;
     // defence

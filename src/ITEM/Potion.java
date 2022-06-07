@@ -1,7 +1,6 @@
 package ITEM;
 
 public class Potion {
-
     private String name;
     private int cost;
     // amount of heals

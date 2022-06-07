@@ -26,7 +26,7 @@ public class InitObject {
 
     // Initiation
     public InitObject(){
-        // initiate inventory settings
+        // initiate inventory properties
         this.maxUpgradeCnt = spaceObject.getMaxUpgradeCnt();
         this.maxSpaceCnt   = spaceObject.getMaxSpaceCnt();
 

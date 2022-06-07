@@ -1,7 +1,6 @@
 package ITEM;
 
 public class Weapon {
-
     private String name;
     private int cost;
     // damage

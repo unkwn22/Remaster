@@ -1,26 +1,30 @@
 package ITEM;
 
+/*
+ * this is an object settings used for inventory space upgrades and setting the amount of spaces
+ */
 public class Space {
 
-    // available expand inventory space amount
-    private int spaceAmount = 5;
+    // available upgrade inventory space amount
+    private int maxSpaceCnt = 5;
 
-    // available expand count
-    private int availableUpgradeCount = 3;
+    // number of counts available to upgrade
+    // which means you can only upgrade your inventory 3 times
+    private int maxUpgradeCnt = 3;
 
-    public int getAvailableUpgradeCount() {
-        return availableUpgradeCount;
+    public int getMaxSpaceCnt() {
+        return maxSpaceCnt;
     }
 
-    public void setAvailableUpgradeCount(int availableUpgradeCount) {
-        this.availableUpgradeCount = availableUpgradeCount;
+    public void setMaxSpaceCnt(int maxSpaceCnt) {
+        this.maxSpaceCnt = maxSpaceCnt;
     }
 
-    public int getSpaceAmount() {
-        return spaceAmount;
+    public int getMaxUpgradeCnt() {
+        return maxUpgradeCnt;
     }
 
-    public void setSpaceAmount(int spaceAmount) {
-        this.spaceAmount = spaceAmount;
+    public void setMaxUpgradeCnt(int maxUpgradeCnt) {
+        this.maxUpgradeCnt = maxUpgradeCnt;
     }
 }

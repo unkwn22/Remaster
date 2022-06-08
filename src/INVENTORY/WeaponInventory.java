@@ -10,6 +10,11 @@ public class WeaponInventory {
     private Weapon weapon;
     private int amount;
 
+    public WeaponInventory(Weapon weapon, int amount){
+        this.weapon = weapon;
+        this.amount = amount;
+    }
+
     public Weapon getWeapon() {
         return weapon;
     }

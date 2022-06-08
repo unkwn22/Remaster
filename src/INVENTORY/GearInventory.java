@@ -12,6 +12,11 @@ public class GearInventory {
 
     private int amount;
 
+    public GearInventory(Gear gear, int amount){
+        this.gear   = gear;
+        this.amount = amount;
+    }
+
     public int getAmount() {
         return amount;
     }

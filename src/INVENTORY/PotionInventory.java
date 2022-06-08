@@ -10,6 +10,11 @@ public class PotionInventory {
     private Potion potion;
     private int amount;
 
+    public PotionInventory(Potion potion, int amount){
+        this.potion = potion;
+        this.amount = amount;
+    }
+
     public Potion getPotion() {
         return potion;
     }

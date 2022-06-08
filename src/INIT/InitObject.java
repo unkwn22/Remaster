@@ -16,9 +16,11 @@ public class InitObject {
     Potion potionItem;
     Weapon weaponItem;
     // starting amount of shrimps
-    int startFoodAmount = 5;
+    int startPotionAmount = 5;
 
-    // Initiation
+    /*
+     * Game load initiation
+     */
     public InitObject(){
         // initiate create gear
         gearItem = new Gear("Bronze gear", 10, 10);
@@ -55,7 +57,7 @@ public class InitObject {
         potionItem = new Potion("Lobster", 10, 10);
         potionList.add(potionItem);
 
-        potionItem = new Potion("Mantray", 15, 15);
+        potionItem = new Potion("Mantaray", 15, 15);
         potionList.add(potionItem);
 
         // initiate create weapon
@@ -81,6 +83,6 @@ public class InitObject {
         weaponList.add(weaponItem);
 
         // creating inventory
-        Inventory inventoryInit = new Inventory(startFoodAmount, gearList, potionList, weaponList);
+        Inventory inventoryInit = new Inventory(startPotionAmount, gearList, potionList, weaponList);
     }
 }

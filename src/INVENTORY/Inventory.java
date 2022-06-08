@@ -14,20 +14,20 @@ public class Inventory {
      * like I mentioned above, this class is going to be a dynamic class used all around the project
      * so the Inventory will be static (moved by pointer memory)
      */
-    static HashMap<String, Object> INVENTORY;
-
-    // Inventory property
-    private int amount;
+    static HashMap<String, Object> REALINVENTORY = new HashMap<>();
 
     // Criteria list received from Object Initiation
     private ArrayList criteriaGearList;
     private ArrayList criteriaWeaponList;
     private ArrayList criteriaPotionList;
 
-    // INGAME usable inventory
-    ArrayList gearSlot         = new ArrayList<>();
-    ArrayList weaponSlot       = new ArrayList<>();
-    ArrayList potionSlot       = new ArrayList<>();
+    // Actual INGAME inventory
+    private String gearSlotName      = "GEAR";
+    private ArrayList gearSlotList   = new ArrayList<>();
+    private String weaponSlotName    = "WEAPON";
+    private ArrayList weaponSlotList = new ArrayList<>();
+    private String potionSlotName    = "POTION";
+    private ArrayList potionSlotList = new ArrayList<>();
 
     // number of counts available to upgrade
     // which means you can only upgrade your inventory 3 times
@@ -38,9 +38,9 @@ public class Inventory {
     private int startPotionAmount;
 
     // for Global method uses
-    Gear gear;
-    Potion potion;
-    Weapon weapon;
+    GearInventory gearInventory;
+    PotionInventory potionInventory;
+    WeaponInventory weaponInventory;
 
     /*
      * beginning initiation for creating inventory class & upgrading inventory slot spaces
@@ -60,17 +60,26 @@ public class Inventory {
         // amount of shrimps started
         this.startPotionAmount = startPotionAmount;
 
-        inventoryStartUpdate();
+        createStartInventory();
+    }
+
+    /*
+     * starting inventory create
+     */
+    public void createStartInventory(){
+        // No.0 index from criteria potion is "shrimps"
+        // index item reference class: INIT.InitObject
+        Potion potion   = (Potion) criteriaPotionList.get(0);
+        potionInventory = new PotionInventory(potion, startPotionAmount);
+        potionSlotList.add(potionInventory);
+        REALINVENTORY.put(potionSlotName, potionSlotList);
     }
 
     /*
      * inventory wipe out
      */
     public void clearInventory(){
-        INVENTORY = new HashMap<>();
-        INVENTORY.put("GEAR", gearSlot);
-        INVENTORY.put("WEAPON", weaponSlot);
-        INVENTORY.put("POTION", potionSlot);
+        REALINVENTORY = new HashMap<>();
     }
 
     /*
@@ -91,11 +100,57 @@ public class Inventory {
     }
 
     /*
-     * update initiating in the beginning of inventory construction
+     * GETTERS AND SETTERS
      */
-    public void inventoryStartUpdate(){
-        // no.0 index of potion is shrimp
-        potion = (Potion) criteriaPotionList.get(0);
+    public ArrayList getCriteriaGearList() {
+        return criteriaGearList;
+    }
 
+    public ArrayList getCriteriaWeaponList() {
+        return criteriaWeaponList;
+    }
+
+    public ArrayList getCriteriaPotionList() {
+        return criteriaPotionList;
+    }
+
+    public String getGearSlotName() {
+        return gearSlotName;
+    }
+
+    public ArrayList getGearSlotList() {
+        return gearSlotList;
+    }
+
+    public String getWeaponSlotName() {
+        return weaponSlotName;
+    }
+
+    public ArrayList getWeaponSlotList() {
+        return weaponSlotList;
+    }
+
+    public String getPotionSlotName() {
+        return potionSlotName;
+    }
+
+    public ArrayList getPotionSlotList() {
+        return potionSlotList;
+    }
+
+    public int getMaxUpgradeCnt() {
+        return maxUpgradeCnt;
+    }
+
+    public int getMaxSpaceCnt() {
+        return maxSpaceCnt;
+    }
+
+    public int getCurrentSpaceCnt() {
+        return currentSpaceCnt;
+    }
+
+    public int getStartPotionAmount() {
+        return startPotionAmount;
     }
 }

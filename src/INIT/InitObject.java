@@ -12,16 +12,18 @@ public class InitObject {
     ArrayList<Potion> potionList = new ArrayList<>();
     ArrayList<Weapon> weaponList = new ArrayList<>();
 
-    Gear gearItem;
-    Potion potionItem;
-    Weapon weaponItem;
-    // starting amount of shrimps
-    int startPotionAmount = 5;
-
     /*
      * Game load initiation
      */
     public InitObject(){
+        // starting amount of shrimps
+        int startPotionAmount = 5;
+
+        // variable localization
+        Gear gearItem;
+        Potion potionItem;
+        Weapon weaponItem;
+
         // initiate create gear
         gearItem = new Gear("Bronze gear", 10, 10);
         gearList.add(gearItem);

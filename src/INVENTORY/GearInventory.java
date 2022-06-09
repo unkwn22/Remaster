@@ -1,6 +1,5 @@
 package INVENTORY;
 
-import java.util.ArrayList;
 import ITEM.*;
 
 /*

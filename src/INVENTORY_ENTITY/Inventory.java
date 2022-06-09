@@ -3,25 +3,19 @@ package INVENTORY_ENTITY;
 import ITEM_ENTITY.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /*
  * this class will be a dynamic inventory class which is used after compiling and INGAME
  */
 public class Inventory {
 
-    // Criteria list received from Object Initiation
-    private ArrayList criteriaGearList;
-    private ArrayList criteriaWeaponList;
-    private ArrayList criteriaPotionList;
+    // for returning into a group method and making things easy when objects are added
+    ArrayList criteriaItemGroup = new ArrayList<>();
 
     // Actual INGAME inventory
-    private String gearSlotName      = "GEAR";
     private ArrayList gearSlotList   = new ArrayList<>();
-    private String weaponSlotName    = "WEAPON";
-    private ArrayList weaponSlotList = new ArrayList<>();
-    private String potionSlotName    = "POTION";
     private ArrayList potionSlotList = new ArrayList<>();
+    private ArrayList weaponSlotList = new ArrayList<>();
 
     // number of counts available to upgrade
     // which means you can only upgrade your inventory 3 times
@@ -31,25 +25,15 @@ public class Inventory {
     private int currentSpaceCnt;
     private int startPotionAmount;
 
-    // for Global method uses
-    GearInventory gearInventory;
-    PotionInventory potionInventory;
-    WeaponInventory weaponInventory;
-
     /*
      * beginning initiation for creating inventory class & upgrading inventory slot spaces
      */
-    public Inventory(int startPotionAmount, ArrayList gearList, ArrayList potionList, ArrayList weaponList){
+    public Inventory(int startPotionAmount, ArrayList criteriaItemGroup){
         Space space = new Space();
         // temporary FINAL properties
         maxSpaceCnt     = space.getMaxSpaceCnt();
         maxUpgradeCnt   = space.getMaxUpgradeCnt();
         currentSpaceCnt = space.getMaxStartSpaceCnt();
-
-        // setting criteria items GLOBALLY
-        criteriaGearList   = gearList;
-        criteriaWeaponList = weaponList;
-        criteriaPotionList = potionList;
 
         // amount of shrimps started
         this.startPotionAmount = startPotionAmount;
@@ -58,37 +42,19 @@ public class Inventory {
     /*
      * GETTERS AND SETTERS
      */
-    public ArrayList getCriteriaGearList() {
-        return criteriaGearList;
-    }
-
-    public ArrayList getCriteriaWeaponList() {
-        return criteriaWeaponList;
-    }
-
-    public ArrayList getCriteriaPotionList() {
-        return criteriaPotionList;
-    }
-
-    public String getGearSlotName() {
-        return gearSlotName;
+    public ArrayList getCriteriaItemGroup() {
+        return criteriaItemGroup;
     }
 
     public ArrayList getGearSlotList() {
         return gearSlotList;
     }
 
-    public String getWeaponSlotName() {
-        return weaponSlotName;
-    }
 
     public ArrayList getWeaponSlotList() {
         return weaponSlotList;
     }
 
-    public String getPotionSlotName() {
-        return potionSlotName;
-    }
 
     public ArrayList getPotionSlotList() {
         return potionSlotList;
@@ -109,4 +75,5 @@ public class Inventory {
     public int getStartPotionAmount() {
         return startPotionAmount;
     }
+
 }

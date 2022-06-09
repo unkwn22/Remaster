@@ -7,10 +7,17 @@ import java.util.ArrayList;
 
 // object, item, structure create(initiation)
 public class InitObject {
-    // Base criteria list
+    /*
+     * 0. Gear
+     * 1. Potion
+     * 2. Weapon
+     */
     ArrayList<Gear> gearList = new ArrayList<>();
     ArrayList<Potion> potionList = new ArrayList<>();
     ArrayList<Weapon> weaponList = new ArrayList<>();
+    // for returning into a group method and making things easy when objects are added
+    ArrayList criteriaItemGroup = new ArrayList<>();
+    // for returning object pointer when constructed so that it can be used and accessed in other packages
     Inventory inventoryObject;
 
     /*
@@ -82,7 +89,11 @@ public class InitObject {
         weaponItem = new Weapon("Dragon sword", 80, 70);
         weaponList.add(weaponItem);
 
-        inventoryObject = new Inventory(startPotionAmount, gearList, potionList, weaponList);
+        criteriaItemGroup.add(gearList);
+        criteriaItemGroup.add(potionList);
+        criteriaItemGroup.add(weaponList);
+
+        inventoryObject = new Inventory(startPotionAmount, criteriaItemGroup);
     }
 
     /*

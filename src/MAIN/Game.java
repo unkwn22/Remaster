@@ -1,17 +1,14 @@
 package MAIN;
 
+import HANDLER.InitMain;
 import INIT.*;
-import INVENTORY_ENTITY.Inventory;
 
 import java.util.Scanner;
 
 public class Game {
-
-    Scanner scan = new Scanner(System.in);
-
     public Game(){
         // able to be set by admin control
-        int startPotionAmount = 0;
+        int startPotionAmount = 5;
 
         /*
          * purpose: initiating item/object entity creation
@@ -23,10 +20,6 @@ public class Game {
          * purpose: INGAME object uses
          */
         InitMain initMain  = new InitMain(initObj.getInventoryObject());
-
-        while(true){
-            int num = scan.nextInt();
-        }
     }
 
     public static void main(String[] args) {

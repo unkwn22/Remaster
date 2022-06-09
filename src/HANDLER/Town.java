@@ -13,7 +13,7 @@ public class Town {
     public Town(InGameInventory inGameInventory){
         // TODO delete debug uses
         while(true){
-
+            inGameInventory.viewInventory();
 
             int num = scan.nextInt();
         }

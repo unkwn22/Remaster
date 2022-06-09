@@ -65,6 +65,7 @@ public class InGameInventory {
              * 1. Potion
              * 2. Weapon
              */
+            // for adding category lists to INGAME INVENTORY
             ArrayList emptySlot = new ArrayList<>();
             // category identifier
             switch(i){
@@ -77,8 +78,11 @@ public class InGameInventory {
                  * Potion
                  */
                 case 1:
-                    // casting criteria potion object to Potion class
-                    Potion starterPotion   = (Potion) criteriaItemGroup.get(i);
+                    // since criteria is made up of multiple arraylists we need to take out one specific arraylist and use that element
+                    ArrayList criteriaPotionTempList = (ArrayList) criteriaItemGroup.get(i);
+                    // casting criteria potion object to Potion class, therefore shrimp is index 0
+// Hard coded
+                    Potion starterPotion   = (Potion) criteriaPotionTempList.get(0);
                     // creating a new PotionInventory class
                     PotionInventory potion = new PotionInventory(starterPotion, startPotionAmount);
                     // adding PotionInventory object to emptySlot arrayList
@@ -94,6 +98,38 @@ public class InGameInventory {
                 default:
                     break;
             }
+        }
+    }
+
+    /*
+     * viewing inventory
+     */
+    public void viewInventory(){
+        // for viewing all elements in INGAMEINVENTORY
+        for(int i = 0; i < INGAMEINVENTORY.size(); i++){
+            // casting each elements in INGAMEINVENTORY (HashMap)
+            ArrayList viewTempList = (ArrayList) INGAMEINVENTORY.get(i);
+            // viewing item method
+            viewItemArrayList(i, viewTempList);
+        }
+    }
+
+    /*
+     * param: String categoryName, ArrayList categoryList
+     */
+    public void viewItemArrayList(int itemIndex, ArrayList categoryList){
+        /*
+         * 0. Gear
+         * 1. Potion
+         * 2. Weapon
+         */
+        switch(itemIndex){
+            case 0: for()
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
         }
     }
 }

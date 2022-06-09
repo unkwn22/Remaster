@@ -1,6 +1,6 @@
-package INVENTORY;
+package INVENTORY_ENTITY;
 
-import ITEM.*;
+import ITEM_ENTITY.*;
 
 /*
  * individual property
@@ -16,6 +16,9 @@ public class GearInventory {
         this.amount = amount;
     }
 
+    /*
+     * GETTERS AND SETTERS
+     */
     public int getAmount() {
         return amount;
     }
@@ -28,7 +31,4 @@ public class GearInventory {
         return gear;
     }
 
-    public void setGear(Gear gear) {
-        this.gear = gear;
-    }
 }

@@ -1,7 +1,7 @@
 package INIT;
 
-import ITEM.*;
-import INVENTORY.*;
+import ITEM_ENTITY.*;
+import INVENTORY_ENTITY.*;
 
 import java.util.ArrayList;
 
@@ -11,14 +11,12 @@ public class InitObject {
     ArrayList<Gear> gearList = new ArrayList<>();
     ArrayList<Potion> potionList = new ArrayList<>();
     ArrayList<Weapon> weaponList = new ArrayList<>();
+    Inventory inventoryObject;
 
     /*
      * Game load initiation
      */
-    public InitObject(){
-        // starting amount of shrimps
-        int startPotionAmount = 5;
-
+    public InitObject(int startPotionAmount){
         // variable localization
         Gear gearItem;
         Potion potionItem;
@@ -84,7 +82,13 @@ public class InitObject {
         weaponItem = new Weapon("Dragon sword", 80, 70);
         weaponList.add(weaponItem);
 
-        // creating inventory
-        Inventory inventoryInit = new Inventory(startPotionAmount, gearList, potionList, weaponList);
+        inventoryObject = new Inventory(startPotionAmount, gearList, potionList, weaponList);
+    }
+
+    /*
+     * GETTERS AND SETTERS
+     */
+    public Inventory getInventoryObject() {
+        return inventoryObject;
     }
 }

@@ -1,6 +1,6 @@
-package INVENTORY;
+package INVENTORY_ENTITY;
 
-import ITEM.*;
+import ITEM_ENTITY.*;
 
 /*
  * individual property
@@ -15,12 +15,11 @@ public class PotionInventory {
         this.amount = amount;
     }
 
+    /*
+     * GETTERS AND SETTERS
+     */
     public Potion getPotion() {
         return potion;
-    }
-
-    public void setPotion(Potion potion) {
-        this.potion = potion;
     }
 
     public int getAmount() {

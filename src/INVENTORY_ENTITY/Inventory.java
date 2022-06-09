@@ -1,6 +1,6 @@
-package INVENTORY;
+package INVENTORY_ENTITY;
 
-import ITEM.*;
+import ITEM_ENTITY.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,12 +9,6 @@ import java.util.HashMap;
  * this class will be a dynamic inventory class which is used after compiling and INGAME
  */
 public class Inventory {
-    /*
-     * container that can store gears, potions, weapons
-     * like I mentioned above, this class is going to be a dynamic class used all around the project
-     * so the Inventory will be static (moved by pointer memory)
-     */
-    static HashMap<String, Object> REALINVENTORY = new HashMap<>();
 
     // Criteria list received from Object Initiation
     private ArrayList criteriaGearList;
@@ -59,44 +53,6 @@ public class Inventory {
 
         // amount of shrimps started
         this.startPotionAmount = startPotionAmount;
-
-        createStartInventory();
-    }
-
-    /*
-     * starting inventory create
-     */
-    public void createStartInventory(){
-        // No.0 index from criteria potion is "shrimps"
-        // index item reference class: INIT.InitObject
-        Potion potion   = (Potion) criteriaPotionList.get(0);
-        potionInventory = new PotionInventory(potion, startPotionAmount);
-        potionSlotList.add(potionInventory);
-        REALINVENTORY.put(potionSlotName, potionSlotList);
-    }
-
-    /*
-     * inventory wipe out
-     */
-    public void clearInventory(){
-        REALINVENTORY = new HashMap<>();
-    }
-
-    /*
-     * param: condition, index, amount
-     * return: string
-     */
-    public String inventoryValidation(String condition, int index, int amount){
-        // using items will decrease the amount
-        if(condition.equals("USE")){
-
-        }
-        // adding an item will increase the amount
-        else if(condition.equals("ADD")){
-
-        }
-
-        return "";
     }
 
     /*

@@ -1,6 +1,6 @@
-package INVENTORY;
+package INVENTORY_ENTITY;
 
-import ITEM.*;
+import ITEM_ENTITY.*;
 
 /*
  * individual property
@@ -15,12 +15,11 @@ public class WeaponInventory {
         this.amount = amount;
     }
 
+    /*
+     * GETTERS AND SETTERS
+     */
     public Weapon getWeapon() {
         return weapon;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
     }
 
     public int getAmount() {

@@ -1,17 +1,20 @@
-package ITEM;
+package ITEM_ENTITY;
 
-public class Potion {
+public class Weapon {
     private String name;
     private int cost;
-    // amount of heals
-    private int heal;
+    // damage
+    private int dmg;
 
-    public Potion(String name, int cost, int heal){
+    public Weapon(String name, int cost, int dmg){
         this.name = name;
         this.cost = cost;
-        this.heal = heal;
+        this.dmg  = dmg;
     }
 
+    /*
+     * GETTERS AND SETTERS
+     */
     public String getName() {
         return name;
     }
@@ -28,11 +31,11 @@ public class Potion {
         this.cost = cost;
     }
 
-    public int getHeal() {
-        return heal;
+    public int getDmg() {
+        return dmg;
     }
 
-    public void setHeal(int heal) {
-        this.heal = heal;
+    public void setDmg(int dmg) {
+        this.dmg = dmg;
     }
 }

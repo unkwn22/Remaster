@@ -1,17 +1,20 @@
-package ITEM;
+package ITEM_ENTITY;
 
-public class Weapon {
-    private String name;
-    private int cost;
-    // damage
-    private int dmg;
+public class Gear {
+    String name;
+    int cost;
+    // defence
+    int def;
 
-    public Weapon(String name, int cost, int dmg){
+    public Gear(String name, int cost, int def){
         this.name = name;
         this.cost = cost;
-        this.dmg  = dmg;
+        this.def  = def;
     }
 
+    /*
+     * GETTERS AND SETTERS
+     */
     public String getName() {
         return name;
     }
@@ -28,11 +31,11 @@ public class Weapon {
         this.cost = cost;
     }
 
-    public int getDmg() {
-        return dmg;
+    public int getDef() {
+        return def;
     }
 
-    public void setDmg(int dmg) {
-        this.dmg = dmg;
+    public void setDef(int def) {
+        this.def = def;
     }
 }

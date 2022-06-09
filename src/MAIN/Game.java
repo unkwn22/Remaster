@@ -1,6 +1,7 @@
 package MAIN;
 
 import INIT.*;
+import INVENTORY_ENTITY.Inventory;
 
 import java.util.Scanner;
 
@@ -9,9 +10,20 @@ public class Game {
     Scanner scan = new Scanner(System.in);
 
     public Game(){
-        InitObject init = new InitObject();
-        // TODO will i have to pass the instance to another package or make its own handler
-        // TODO making its own handler page inside of the INVENTORY package or on its own
+        // able to be set by admin control
+        int startPotionAmount = 0;
+
+        /*
+         * purpose: initiating item/object entity creation
+         *  return: inventory object
+         */
+        InitObject initObj = new InitObject(startPotionAmount);
+
+        /*
+         * purpose: INGAME object uses
+         */
+        InitMain initMain  = new InitMain(initObj.getInventoryObject());
+
         while(true){
             int num = scan.nextInt();
         }

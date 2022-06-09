@@ -1,4 +1,4 @@
-package ITEM;
+package ITEM_ENTITY;
 
 /*
  * this is an object settings used for inventory space upgrades and setting the amount of spaces
@@ -14,6 +14,9 @@ public class Space {
     // which means you can only upgrade your inventory 3 times
     private int maxUpgradeCnt = 3;
 
+    /*
+     * GETTERS AND SETTERS
+     */
     public int getMaxSpaceCnt() {
         return maxSpaceCnt;
     }

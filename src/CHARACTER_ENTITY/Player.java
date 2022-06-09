@@ -1,4 +1,4 @@
-package CHARACTER;
+package CHARACTER_ENTITY;
 
 // player class
 public class Player {

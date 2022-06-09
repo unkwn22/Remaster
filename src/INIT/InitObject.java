@@ -12,11 +12,11 @@ public class InitObject {
      * 1. Potion
      * 2. Weapon
      */
-    ArrayList<Gear> gearList = new ArrayList<>();
+    ArrayList<Gear> gearList     = new ArrayList<>();
     ArrayList<Potion> potionList = new ArrayList<>();
     ArrayList<Weapon> weaponList = new ArrayList<>();
     // for returning into a group method and making things easy when objects are added
-    ArrayList criteriaItemGroup = new ArrayList<>();
+    ArrayList criteriaItemGroup  = new ArrayList<>();
     // for returning object pointer when constructed so that it can be used and accessed in other packages
     Inventory inventoryObject;
 

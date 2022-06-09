@@ -15,8 +15,8 @@ public class Player {
 
     public Player(String name, int att, int def, int coin){
            this.name = name;
-           this.att = att;
-           this.def = def;
+           this.att  = att;
+           this.def  = def;
            this.coin = coin;
     }
 

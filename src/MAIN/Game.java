@@ -16,10 +16,12 @@ public class Game {
          */
         InitObject initObj = new InitObject(startPotionAmount);
 
+        // TODO depending on mode selection, player will be started with starter items
+        int mode = 1;
         /*
          * purpose: INGAME object uses
          */
-        InitMain initMain  = new InitMain(initObj.getInventoryObject());
+        InitMain initMain  = new InitMain(initObj.getInventoryObject(), mode);
     }
 
     public static void main(String[] args) {

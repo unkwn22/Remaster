@@ -128,30 +128,67 @@ public class InGameInventory {
          */
         switch(itemIndex){
             case 0:
-                System.out.println("Gear");
+                System.out.println(itemIndex + "]Gear");
                 for(Object object : categoryList){
                     GearInventory gearInventory = (GearInventory) object;
                     Gear gear = gearInventory.getGear();
-                    System.out.println("Name: " + gear.getName() + " Cost:" + gear.getCost() + " Amount: " + gearInventory.getAmount());
+                    // defining item index
+                    int itemDefineIndex = 0;
+                    System.out.println(itemDefineIndex + "]Name: " + gear.getName() + " Cost:" + gear.getCost() + " Amount: " + gearInventory.getAmount());
+                    itemDefineIndex++;
                 }
                 break;
             case 1:
-                System.out.println("Potion");
+                System.out.println(itemIndex + "]Potion");
                 for(Object object : categoryList){
                     PotionInventory potionInventory = (PotionInventory) object;
                     Potion potion = potionInventory.getPotion();
-                    System.out.println("Name: " + potion.getName() + " Cost:" + potion.getCost() + " Amount: " + potionInventory.getAmount());
+                    // defining item index
+                    int itemDefineIndex = 0;
+                    System.out.println(itemDefineIndex + "]Name: " + potion.getName() + " Cost:" + potion.getCost() + " Amount: " + potionInventory.getAmount());
+                    itemDefineIndex++;
                 }
                 break;
             case 2:
-                System.out.println("Weapon");
+                System.out.println(itemIndex + "]Weapon");
                 for(Object object : categoryList){
                     WeaponInventory weaponInventory = (WeaponInventory) object;
                     Weapon weapon = weaponInventory.getWeapon();
-                    System.out.println("Name: " + weapon.getName() + " Cost:" + weapon.getCost() + " Amount" + weaponInventory.getAmount());
+                    // defining item index
+                    int itemDefineIndex = 0;
+                    System.out.println(itemDefineIndex + "]Name: " + weapon.getName() + " Cost:" + weapon.getCost() + " Amount" + weaponInventory.getAmount());
+                    itemDefineIndex++;
                 }
                 break;
             default:
+                break;
+        }
+    }
+
+    /*
+     * method for using or tossing items
+     * param: String use or toss, which category, which item, number of items
+     */
+    public void useOrTossItem(int categoryIndex, int itemIndex, int amount){
+// Hard coded
+        // selecting category to enter
+        switch(categoryIndex){
+            case 0:
+                break;
+            case 1:
+                ArrayList categoryItemList          = (ArrayList) INGAMEINVENTORY.get(categoryIndex);
+                PotionInventory potionInventoryTemp = (PotionInventory) categoryItemList.get(itemIndex);
+                int currentAmount                   = potionInventoryTemp.getAmount();
+                int calculationResult               = currentAmount -= amount;
+                if(calculationResult > 0){
+                    potionInventoryTemp.setAmount(calculationResult);
+                    categoryItemList.remove(itemIndex);
+                    categoryItemList.add(potionInventoryTemp);
+                }else{
+                    categoryItemList.remove(itemIndex);
+                }
+                break;
+            case 2:
                 break;
         }
     }

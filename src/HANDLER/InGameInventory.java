@@ -176,6 +176,7 @@ public class InGameInventory {
             case 0:
                 break;
             case 1:
+                // TODO add comments
                 ArrayList categoryItemList          = (ArrayList) INGAMEINVENTORY.get(categoryIndex);
                 PotionInventory potionInventoryTemp = (PotionInventory) categoryItemList.get(itemIndex);
                 int currentAmount                   = potionInventoryTemp.getAmount();

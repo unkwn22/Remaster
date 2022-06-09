@@ -182,8 +182,7 @@ public class InGameInventory {
                 int calculationResult               = currentAmount -= amount;
                 if(calculationResult > 0){
                     potionInventoryTemp.setAmount(calculationResult);
-                    categoryItemList.remove(itemIndex);
-                    categoryItemList.add(potionInventoryTemp);
+                    categoryItemList.set(itemIndex, potionInventoryTemp);
                 }else{
                     categoryItemList.remove(itemIndex);
                 }

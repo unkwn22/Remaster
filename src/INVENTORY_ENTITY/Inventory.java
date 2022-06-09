@@ -8,14 +8,8 @@ import java.util.ArrayList;
  * this class will be a dynamic inventory class which is used after compiling and INGAME
  */
 public class Inventory {
-
     // for returning into a group method and making things easy when objects are added
-    ArrayList criteriaItemGroup = new ArrayList<>();
-
-    // Actual INGAME inventory
-    private ArrayList gearSlotList   = new ArrayList<>();
-    private ArrayList potionSlotList = new ArrayList<>();
-    private ArrayList weaponSlotList = new ArrayList<>();
+    private ArrayList criteriaItemGroup = new ArrayList<>();
 
     // number of counts available to upgrade
     // which means you can only upgrade your inventory 3 times
@@ -34,7 +28,8 @@ public class Inventory {
         maxSpaceCnt     = space.getMaxSpaceCnt();
         maxUpgradeCnt   = space.getMaxUpgradeCnt();
         currentSpaceCnt = space.getMaxStartSpaceCnt();
-
+        // passing through and setting it globally
+        this.criteriaItemGroup = criteriaItemGroup;
         // amount of shrimps started
         this.startPotionAmount = startPotionAmount;
     }
@@ -44,20 +39,6 @@ public class Inventory {
      */
     public ArrayList getCriteriaItemGroup() {
         return criteriaItemGroup;
-    }
-
-    public ArrayList getGearSlotList() {
-        return gearSlotList;
-    }
-
-
-    public ArrayList getWeaponSlotList() {
-        return weaponSlotList;
-    }
-
-
-    public ArrayList getPotionSlotList() {
-        return potionSlotList;
     }
 
     public int getMaxUpgradeCnt() {

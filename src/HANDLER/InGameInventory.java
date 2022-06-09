@@ -101,6 +101,7 @@ public class InGameInventory {
         }
     }
 
+    // TODO refactor unnecessary methods
     /*
      * viewing inventory
      */
@@ -114,9 +115,11 @@ public class InGameInventory {
         }
     }
 
+    // TODO refactor every for loop in case
     /*
      * param: String categoryName, ArrayList categoryList
      */
+// Hard coded
     public void viewItemArrayList(int itemIndex, ArrayList categoryList){
         /*
          * 0. Gear
@@ -124,11 +127,31 @@ public class InGameInventory {
          * 2. Weapon
          */
         switch(itemIndex){
-            case 0: for()
+            case 0:
+                System.out.println("Gear");
+                for(Object object : categoryList){
+                    GearInventory gearInventory = (GearInventory) object;
+                    Gear gear = gearInventory.getGear();
+                    System.out.println("Name: " + gear.getName() + " Cost:" + gear.getCost() + " Amount: " + gearInventory.getAmount());
+                }
                 break;
             case 1:
+                System.out.println("Potion");
+                for(Object object : categoryList){
+                    PotionInventory potionInventory = (PotionInventory) object;
+                    Potion potion = potionInventory.getPotion();
+                    System.out.println("Name: " + potion.getName() + " Cost:" + potion.getCost() + " Amount: " + potionInventory.getAmount());
+                }
                 break;
             case 2:
+                System.out.println("Weapon");
+                for(Object object : categoryList){
+                    WeaponInventory weaponInventory = (WeaponInventory) object;
+                    Weapon weapon = weaponInventory.getWeapon();
+                    System.out.println("Name: " + weapon.getName() + " Cost:" + weapon.getCost() + " Amount" + weaponInventory.getAmount());
+                }
+                break;
+            default:
                 break;
         }
     }

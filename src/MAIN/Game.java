@@ -14,6 +14,9 @@ public class Game {
     int titleFontSize       = 90;
     Font titleFont          = new Font(titleFontName, titleFontProperties, titleFontSize);
 
+    int normalFontSize      = 30;
+    Font normalFont         = new Font(titleFontName, titleFontProperties, normalFontSize);
+
     // creating a basic frame
     JFrame window;
     // a container that the window will carry
@@ -25,8 +28,8 @@ public class Game {
     Color frameColor = Color.black;
     boolean visibleSet    = true;
 
-    // a component for the title
-    JPanel titleNamePanel;
+    // component global variable
+    JPanel titleNamePanel, startButtonPanel;
     // titleNamePanel properties
     int boundX                = 90;
     int boundY                = 100;
@@ -36,10 +39,24 @@ public class Game {
 
     // title label properties
     JLabel titleNameLabel;
-    String titleName = "Remasterd";
+    String titleName          = "Remasterd";
     // color of the text
     Color textForegroundColor = Color.white;
 
+    // startButtonPanel properties
+    int sButtonPanelX      = 200;
+    int sButtonPanelY      = 300;
+    int sButtonPanelW      = 400;
+    int sButtonPanelH      = 200;
+    Color sButtonPanelBackColor = Color.blue;
+
+    // button object
+    JButton startButton, loadButton, exitButton;
+    Color sButtonBackColor  = Color.black;
+    Color sButtonForeColor  = Color.white;
+    String startButtonLabel = "Start";
+    String loadButtonLabel  = "Load";
+    String exitButtonLabel  = "Exit";
 
     public Game(){
 
@@ -73,10 +90,36 @@ public class Game {
         titleNameLabel.setForeground(textForegroundColor);
         titleNameLabel.setFont(titleFont);
 
+        // creating a start button panel
+        startButtonPanel = new JPanel();
+        startButtonPanel.setBounds(sButtonPanelX, sButtonPanelY, sButtonPanelW, sButtonPanelH);
+        startButtonPanel.setBackground(sButtonPanelBackColor);
+
+        // creating Jbutton start button panel
+        startButton = new JButton(startButtonLabel);
+        startButton.setBackground(sButtonBackColor);
+        startButton.setForeground(sButtonForeColor);
+        startButton.setFont(normalFont);
+
+        loadButton = new JButton(loadButtonLabel);
+        loadButton.setBackground(sButtonBackColor);
+        loadButton.setForeground(sButtonForeColor);
+        loadButton.setFont(normalFont);
+
+        exitButton = new JButton(exitButtonLabel);
+        exitButton.setBackground(sButtonBackColor);
+        exitButton.setForeground(sButtonForeColor);
+        exitButton.setFont(normalFont);
+
         // adding the title label to the title panel
         titleNamePanel.add(titleNameLabel);
+        startButtonPanel.add(startButton);
+        startButtonPanel.add(loadButton);
+        startButtonPanel.add(exitButton);
+
         // adding a panel
         container.add(titleNamePanel);
+        container.add(startButtonPanel);
 
 
 

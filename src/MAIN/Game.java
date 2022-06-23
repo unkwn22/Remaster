@@ -1,13 +1,12 @@
 package MAIN;
 
-import HANDLER.InitMain;
+import HANDLER.*;
 import INIT.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Game {
-
     // font properties
     String titleFontName    = "Times new Roman";
     int titleFontProperties = Font.PLAIN;
@@ -44,11 +43,12 @@ public class Game {
     Color textForegroundColor = Color.white;
 
     // startButtonPanel properties
-    int sButtonPanelX      = 200;
-    int sButtonPanelY      = 300;
-    int sButtonPanelW      = 400;
-    int sButtonPanelH      = 200;
-    Color sButtonPanelBackColor = Color.blue;
+    int sButtonPanelX           = 200;
+    int sButtonPanelY           = 300;
+    int sButtonPanelW           = 400;
+    int sButtonPanelH           = 200;
+    Color sButtonPanelBackColor = Color.black;
+    GridLayout gridLayout       = new GridLayout(3, 1);
 
     // button object
     JButton startButton, loadButton, exitButton;
@@ -94,22 +94,27 @@ public class Game {
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(sButtonPanelX, sButtonPanelY, sButtonPanelW, sButtonPanelH);
         startButtonPanel.setBackground(sButtonPanelBackColor);
+        startButtonPanel.setLayout(new GridLayout(4, 1));
 
         // creating Jbutton start button panel
         startButton = new JButton(startButtonLabel);
         startButton.setBackground(sButtonBackColor);
         startButton.setForeground(sButtonForeColor);
         startButton.setFont(normalFont);
+        // setting the startbutton an actionListener property so when clicked, it will call into titlescreenhandler implementation
+        startButton.addActionListener(new TitleScreenHandler(titleNamePanel, startButtonPanel, container));
 
         loadButton = new JButton(loadButtonLabel);
         loadButton.setBackground(sButtonBackColor);
         loadButton.setForeground(sButtonForeColor);
         loadButton.setFont(normalFont);
+        loadButton.addActionListener(new TitleScreenHandler(titleNamePanel, startButtonPanel, container));
 
         exitButton = new JButton(exitButtonLabel);
         exitButton.setBackground(sButtonBackColor);
         exitButton.setForeground(sButtonForeColor);
         exitButton.setFont(normalFont);
+        exitButton.addActionListener(new TitleScreenHandler(titleNamePanel, startButtonPanel, container));
 
         // adding the title label to the title panel
         titleNamePanel.add(titleNameLabel);
@@ -122,31 +127,30 @@ public class Game {
         container.add(startButtonPanel);
 
 
+        // TODO needs to be moved
+//        // able to be set by admin control
+//        int startPotionAmount = 5;
+//
+//        /*
+//         * purpose: initiating item/object entity creation
+//         *  return: inventory object
+//         */
+//        InitObject initObj = new InitObject(startPotionAmount);
+//
+//        // depending on mode selection, player will be started with starter items
+//        int mode = 1;
+//        /*
+//         * purpose: INGAME object uses
+//         */
+//        InitMain initMain  = new InitMain(initObj.getInventoryObject(), mode);
 
-
-
-
-
-        // able to be set by admin control
-        int startPotionAmount = 5;
-
-        /*
-         * purpose: initiating item/object entity creation
-         *  return: inventory object
-         */
-        InitObject initObj = new InitObject(startPotionAmount);
-
-        // depending on mode selection, player will be started with starter items
-        int mode = 1;
-        /*
-         * purpose: INGAME object uses
-         */
-        InitMain initMain  = new InitMain(initObj.getInventoryObject(), mode);
     }
 
     public static void main(String[] args) {
 
         new Game();
     }
+
+
 
 }

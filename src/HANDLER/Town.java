@@ -15,14 +15,11 @@ public class Town {
         while(true){
             inGameInventory.viewInventory();
 
-            System.out.println("What category would you like to delete?");
-            int categoryIndex = scan.nextInt();
-            System.out.println("What potion would you like to delete?");
-            int itemIndex = scan.nextInt();
-            System.out.println("how many would you like to delete?");
+            int categorySelIndex = scan.nextInt();
+            int itemSelIndex = scan.nextInt();
             int amount = scan.nextInt();
 
-            inGameInventory.useOrTossItem(categoryIndex, itemIndex, amount);
+            inGameInventory.useOrTossItem(categorySelIndex, itemSelIndex, amount);
         }
     }
 }

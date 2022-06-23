@@ -15,7 +15,7 @@ public class InGameInventory {
      * like I mentioned above, this class is going to be a dynamic class used all around the project
      * so the Inventory will be static (moved by pointer memory)
      */
-    static HashMap<Integer, Object> INGAMEINVENTORY = new HashMap<>();
+    HashMap<Integer, Object> InGameInventory = new HashMap<>();
 
     // for returning into a group method and making things easy when objects are added
     /*
@@ -24,7 +24,6 @@ public class InGameInventory {
      * 2. Weapon
      */
     private ArrayList criteriaItemGroup = new ArrayList<>();
-    private Inventory inventory;
 
     // number of counts available to upgrade
     // which means you can only upgrade your inventory 3 times
@@ -38,6 +37,7 @@ public class InGameInventory {
     private GearInventory gearInventory;
     private PotionInventory potionInventory;
     private WeaponInventory weaponInventory;
+    private Inventory inventory;
 
     /*
      * constructor
@@ -72,7 +72,7 @@ public class InGameInventory {
                 /*
                  * Gear
                  */
-                case 0: INGAMEINVENTORY.put(i, emptySlot);
+                case 0: InGameInventory.put(i, emptySlot);
                     break;
                 /*
                  * Potion
@@ -88,12 +88,12 @@ public class InGameInventory {
                     // adding PotionInventory object to emptySlot arrayList
                     emptySlot.add(potion);
                     // adding into static INGAMEINVENTORY
-                    INGAMEINVENTORY.put(i, emptySlot);
+                    InGameInventory.put(i, emptySlot);
                     break;
                 /*
                  * Weapon
                  */
-                case 2: INGAMEINVENTORY.put(i, emptySlot);
+                case 2: InGameInventory.put(i, emptySlot);
                     break;
                 default:
                     break;
@@ -107,9 +107,9 @@ public class InGameInventory {
      */
     public void viewInventory(){
         // for viewing all elements in INGAMEINVENTORY
-        for(int i = 0; i < INGAMEINVENTORY.size(); i++){
+        for(int i = 0; i < InGameInventory.size(); i++){
             // casting each elements in INGAMEINVENTORY (HashMap)
-            ArrayList viewTempList = (ArrayList) INGAMEINVENTORY.get(i);
+            ArrayList viewTempList = (ArrayList) InGameInventory.get(i);
             // viewing item method
             viewItemArrayList(i, viewTempList);
         }
@@ -176,14 +176,23 @@ public class InGameInventory {
             case 0:
                 break;
             case 1:
-                // TODO add comments
-                ArrayList categoryItemList          = (ArrayList) INGAMEINVENTORY.get(categoryIndex);
-                PotionInventory potionInventoryTemp = (PotionInventory) categoryItemList.get(itemIndex);
-                int currentAmount                   = potionInventoryTemp.getAmount();
+                // taking about specific selected arraylist into a temporary categoryItemList
+                ArrayList categoryItemList          = (ArrayList) InGameInventory.get(categoryIndex);
+                // since a category Inventory has its own amount properties we need to move the object by another inventory layer
+                // it's getting a index item number of the category a user selected
+                PotionInventory potionInventoryChange = (PotionInventory) categoryItemList.get(itemIndex);
+                // getting the amount of the item
+                int currentAmount                   = potionInventoryChange.getAmount();
+                // calculation
                 int calculationResult               = currentAmount -= amount;
+
                 if(calculationResult > 0){
-                    potionInventoryTemp.setAmount(calculationResult);
-                    categoryItemList.set(itemIndex, potionInventoryTemp);
+                    // setting the calculated amount
+                    potionInventoryChange.setAmount(calculationResult);
+                    // setting the item arraylist
+                    categoryItemList.set(itemIndex, potionInventoryChange);
+                    // setting item hashmap
+                    //InGameInventory.put(categoryIndex, categoryItemList);
                 }else{
                     categoryItemList.remove(itemIndex);
                 }

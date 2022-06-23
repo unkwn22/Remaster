@@ -1,10 +1,6 @@
 package HANDLER;
 
 import INVENTORY_ENTITY.Inventory;
-import ITEM_ENTITY.Potion;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /*
  * for constructing INGAME uses (LOADING)

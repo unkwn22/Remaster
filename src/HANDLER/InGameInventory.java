@@ -15,7 +15,10 @@ public class InGameInventory {
      * like I mentioned above, this class is going to be a dynamic class used all around the project
      * so the Inventory will be static (moved by pointer memory)
      */
-    HashMap<Integer, Object> InGameInventory = new HashMap<>();
+
+    ArrayList<GearInventory> gearInventoryList = new ArrayList();
+    ArrayList<PotionInventory> potionInventoryList = new ArrayList();
+    ArrayList<WeaponInventory> weaponInventoryList = new ArrayList();
 
     // for returning into a group method and making things easy when objects are added
     /*
@@ -28,16 +31,17 @@ public class InGameInventory {
     // number of counts available to upgrade
     // which means you can only upgrade your inventory 3 times
     // temporary FINAL property
+    private Inventory inventory;
+
     private int maxUpgradeCnt;
     private int maxSpaceCnt;
     private int currentSpaceCnt;
     private int startPotionAmount;
 
     // for Global method uses
-    private GearInventory gearInventory;
-    private PotionInventory potionInventory;
-    private WeaponInventory weaponInventory;
-    private Inventory inventory;
+    private GearInventory gearInventoryGlobal;
+    private PotionInventory potionInventoryGlobal;
+    private WeaponInventory weaponInventoryGlobal;
 
     /*
      * constructor
@@ -65,35 +69,20 @@ public class InGameInventory {
              * 1. Potion
              * 2. Weapon
              */
-            // for adding category lists to INGAME INVENTORY
-            ArrayList emptySlot = new ArrayList<>();
             // category identifier
             switch(i){
-                /*
-                 * Gear
-                 */
-                case 0: InGameInventory.put(i, emptySlot);
+                case 0:
                     break;
-                /*
-                 * Potion
-                 */
                 case 1:
-                    // since criteria is made up of multiple arraylists we need to take out one specific arraylist and use that element
-                    ArrayList criteriaPotionTempList = (ArrayList) criteriaItemGroup.get(i);
-                    // casting criteria potion object to Potion class, therefore shrimp is index 0
-// Hard coded
-                    Potion starterPotion   = (Potion) criteriaPotionTempList.get(0);
-                    // creating a new PotionInventory class
-                    PotionInventory potion = new PotionInventory(starterPotion, startPotionAmount);
-                    // adding PotionInventory object to emptySlot arrayList
-                    emptySlot.add(potion);
-                    // adding into static INGAMEINVENTORY
-                    InGameInventory.put(i, emptySlot);
+                    // setting starters item since criteriaItemGroup arraylist is capsuling 3 arraylists we need to cast the first arraylist into
+                    // a temporary list
+                    ArrayList<Potion> tempList = (ArrayList<Potion>) criteriaItemGroup.get(1);
+                    // getting that one specific tempList object and casting it into a ObjectInventory class to set the amount
+                    potionInventoryGlobal = new PotionInventory(tempList.get(0), startPotionAmount);
+                    // adding it into a inGame usable item list
+                    potionInventoryList.add(potionInventoryGlobal);
                     break;
-                /*
-                 * Weapon
-                 */
-                case 2: InGameInventory.put(i, emptySlot);
+                case 2:
                     break;
                 default:
                     break;
@@ -101,35 +90,16 @@ public class InGameInventory {
         }
     }
 
-    // TODO refactor unnecessary methods
-    /*
-     * viewing inventory
-     */
-    public void viewInventory(){
-        // for viewing all elements in INGAMEINVENTORY
-        for(int i = 0; i < InGameInventory.size(); i++){
-            // casting each elements in INGAMEINVENTORY (HashMap)
-            ArrayList viewTempList = (ArrayList) InGameInventory.get(i);
-            // viewing item method
-            viewItemArrayList(i, viewTempList);
-        }
-    }
-
-    // TODO refactor every for loop in case
-    /*
-     * param: String categoryName, ArrayList categoryList
-     */
-// Hard coded
-    public void viewItemArrayList(int itemIndex, ArrayList categoryList){
+    public void viewItemArrayList(int itemCategory){
         /*
          * 0. Gear
          * 1. Potion
          * 2. Weapon
          */
-        switch(itemIndex){
+        switch(itemCategory){
             case 0:
-                System.out.println(itemIndex + "]Gear");
-                for(Object object : categoryList){
+                System.out.println(itemCategory + "]Gear");
+                for(Object object : gearInventoryList){
                     GearInventory gearInventory = (GearInventory) object;
                     Gear gear = gearInventory.getGear();
                     // defining item index
@@ -139,8 +109,8 @@ public class InGameInventory {
                 }
                 break;
             case 1:
-                System.out.println(itemIndex + "]Potion");
-                for(Object object : categoryList){
+                System.out.println(itemCategory + "]Potion");
+                for(Object object : potionInventoryList){
                     PotionInventory potionInventory = (PotionInventory) object;
                     Potion potion = potionInventory.getPotion();
                     // defining item index
@@ -150,8 +120,8 @@ public class InGameInventory {
                 }
                 break;
             case 2:
-                System.out.println(itemIndex + "]Weapon");
-                for(Object object : categoryList){
+                System.out.println(itemCategory + "]Weapon");
+                for(Object object : weaponInventoryList){
                     WeaponInventory weaponInventory = (WeaponInventory) object;
                     Weapon weapon = weaponInventory.getWeapon();
                     // defining item index
@@ -165,10 +135,6 @@ public class InGameInventory {
         }
     }
 
-    /*
-     * method for using or tossing items
-     * param: String use or toss, which category, which item, number of items
-     */
     public void useOrTossItem(int categoryIndex, int itemIndex, int amount){
 // Hard coded
         // selecting category to enter
@@ -176,25 +142,15 @@ public class InGameInventory {
             case 0:
                 break;
             case 1:
-                // taking about specific selected arraylist into a temporary categoryItemList
-                ArrayList categoryItemList          = (ArrayList) InGameInventory.get(categoryIndex);
-                // since a category Inventory has its own amount properties we need to move the object by another inventory layer
-                // it's getting a index item number of the category a user selected
-                PotionInventory potionInventoryChange = (PotionInventory) categoryItemList.get(itemIndex);
-                // getting the amount of the item
-                int currentAmount                   = potionInventoryChange.getAmount();
+                potionInventoryGlobal = potionInventoryList.get(itemIndex);
+                int currentAmount = potionInventoryGlobal.getAmount();
                 // calculation
                 int calculationResult               = currentAmount -= amount;
 
                 if(calculationResult > 0){
-                    // setting the calculated amount
-                    potionInventoryChange.setAmount(calculationResult);
-                    // setting the item arraylist
-                    categoryItemList.set(itemIndex, potionInventoryChange);
-                    // setting item hashmap
-                    //InGameInventory.put(categoryIndex, categoryItemList);
+                    potionInventoryGlobal.setAmount(calculationResult);
                 }else{
-                    categoryItemList.remove(itemIndex);
+                    potionInventoryList.remove(itemIndex);
                 }
                 break;
             case 2:

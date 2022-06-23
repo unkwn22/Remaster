@@ -27,6 +27,7 @@ public class PotionInventory {
     }
 
     public void setAmount(int amount) {
+        System.out.println(this.amount);
         this.amount = amount;
     }
 }

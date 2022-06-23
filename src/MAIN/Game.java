@@ -16,7 +16,7 @@ public class Game {
          */
         InitObject initObj = new InitObject(startPotionAmount);
 
-        // TODO depending on mode selection, player will be started with starter items
+        // depending on mode selection, player will be started with starter items
         int mode = 1;
         /*
          * purpose: INGAME object uses

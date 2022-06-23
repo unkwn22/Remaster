@@ -8,6 +8,12 @@ import java.awt.*;
 
 public class Game {
 
+    // font properties
+    String titleFontName    = "Times new Roman";
+    int titleFontProperties = Font.PLAIN;
+    int titleFontSize       = 90;
+    Font titleFont          = new Font(titleFontName, titleFontProperties, titleFontSize);
+
     // creating a basic frame
     JFrame window;
     // a container that the window will carry
@@ -26,7 +32,14 @@ public class Game {
     int boundY                = 100;
     int boundWidth            = 600;
     int boundHeight           = 150;
-    Color titleNamePanelColor = Color.blue;
+    Color titleNamePanelColor = Color.black;
+
+    // title label properties
+    JLabel titleNameLabel;
+    String titleName = "Remasterd";
+    // color of the text
+    Color textForegroundColor = Color.white;
+
 
     public Game(){
 
@@ -55,8 +68,21 @@ public class Game {
         // setting the panel background
         titleNamePanel.setBackground(titleNamePanelColor);
 
+        // creating a title name
+        titleNameLabel = new JLabel(titleName);
+        titleNameLabel.setForeground(textForegroundColor);
+        titleNameLabel.setFont(titleFont);
+
+        // adding the title label to the title panel
+        titleNamePanel.add(titleNameLabel);
         // adding a panel
         container.add(titleNamePanel);
+
+
+
+
+
+
 
         // able to be set by admin control
         int startPotionAmount = 5;

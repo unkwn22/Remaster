@@ -1,12 +1,15 @@
 package MAIN;
 
 import HANDLER.*;
-import INIT.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Game {
+public class Game implements ActionListener {
+    CharacterCreation characterCreation;
+
     // font properties
     String titleFontName    = "Times new Roman";
     int titleFontProperties = Font.PLAIN;
@@ -59,7 +62,6 @@ public class Game {
     String exitButtonLabel  = "Exit";
 
     public Game(){
-
         // creating a JFrame panel
         window = new JFrame();
         // setting the size of the panel
@@ -102,19 +104,19 @@ public class Game {
         startButton.setForeground(sButtonForeColor);
         startButton.setFont(normalFont);
         // setting the startbutton an actionListener property so when clicked, it will call into titlescreenhandler implementation
-        startButton.addActionListener(new TitleScreenHandler(titleNamePanel, startButtonPanel, container));
+        startButton.addActionListener(this);
 
         loadButton = new JButton(loadButtonLabel);
         loadButton.setBackground(sButtonBackColor);
         loadButton.setForeground(sButtonForeColor);
         loadButton.setFont(normalFont);
-        loadButton.addActionListener(new TitleScreenHandler(titleNamePanel, startButtonPanel, container));
+        loadButton.addActionListener(this);
 
         exitButton = new JButton(exitButtonLabel);
         exitButton.setBackground(sButtonBackColor);
         exitButton.setForeground(sButtonForeColor);
         exitButton.setFont(normalFont);
-        exitButton.addActionListener(new TitleScreenHandler(titleNamePanel, startButtonPanel, container));
+        exitButton.addActionListener(this);
 
         // adding the title label to the title panel
         titleNamePanel.add(titleNameLabel);
@@ -146,11 +148,31 @@ public class Game {
 
     }
 
+    // title screen handler
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        // getting the button name
+        String actionName = event.getActionCommand();
+
+        switch(actionName){
+            case "Start":
+                // setting visible to false
+                titleNamePanel.setVisible(false);
+                startButtonPanel.setVisible(false);
+                // moving to character creation page
+                characterCreation = new CharacterCreation(container);
+                break;
+            case "Load":
+                titleNamePanel.setVisible(false);
+                startButtonPanel.setVisible(false);
+                break;
+            case "Exit": System.exit(0);
+                break;
+        }
+    }
+
     public static void main(String[] args) {
 
         new Game();
     }
-
-
-
 }

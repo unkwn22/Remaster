@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CharacterCreationHandler implements ActionListener{
+public class CharacterCreation implements ActionListener{
 
     Container container;
 
@@ -19,8 +19,8 @@ public class CharacterCreationHandler implements ActionListener{
 
     // JTextArea properties
     JTextArea textArea, inputTextField;
-    String askText          = "Type in your name.";
-    String validText        = "Valid name, Please type in your name again.";
+    String askText          = "Type in your name. (No spaces allowed)";
+    String validText        = "Valid name, Please type in your name again. (No spaces allowed)";
     Color textAreaBackColor = Color.black;
     Color textAreaForeColor = Color.white;
     boolean lineWrap        = true;
@@ -41,7 +41,7 @@ public class CharacterCreationHandler implements ActionListener{
     GridLayout gridLayout    = new GridLayout(3, 1);
 
     // constructor
-    public CharacterCreationHandler(Container container){
+    public CharacterCreation(Container container){
         this.container = container;
         createScreen();
     }
@@ -79,10 +79,48 @@ public class CharacterCreationHandler implements ActionListener{
         inputNamePanel.add(confirmBtn);
     }
 
-    // name validation check
+    // actionListener method
     @Override
     public void actionPerformed(ActionEvent e) {
         // getting the name input from the user
-        String name = inputTextField.getText();
+        String nameInput = inputTextField.getText();
+        // validate name method
+        // return status for continue or to catch validtaion
+        boolean returnStatus = nameValidate(nameInput);
+
+        // user input name judgement
+        if(returnStatus == false){
+            textArea.setText(validText);
+        }else{
+
+        }
+    }
+
+    // name validation check
+    public boolean nameValidate(String nameInput){
+        // variables for checking spaces in between
+        int nameInputLength = nameInput.length();
+        char[] charCheck = new char[nameInputLength];
+        // getting individual characters for string
+        for(int i = 0; i < nameInputLength; i++){
+            charCheck[i] = nameInput.charAt(i);
+        }
+
+        // return status
+        boolean rtnStatus = true;
+        // flagging for valid checks
+        int flag = 0;
+
+        // same meaning for user aspect, but totally different meanings
+        if(nameInput.isEmpty() || nameInput.equals(null) || nameInput.equals("")) return false;
+        // checking for spaces when size of input is bigger than one
+        for(int i = 0; i < charCheck.length; i++){
+            char trimmedChar = charCheck[i];
+            if(trimmedChar == ' '){
+                return false;
+            }
+        }
+
+        return rtnStatus;
     }
 }

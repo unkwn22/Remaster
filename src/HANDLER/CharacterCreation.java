@@ -20,7 +20,7 @@ public class CharacterCreation implements ActionListener{
     // JTextArea properties
     JTextArea textArea, inputTextField;
     String askText          = "Type in your name. (No spaces allowed)";
-    String validText        = "Valid name, Please type in your name again. (No spaces allowed)";
+    String validText        = "Invalid name, Please type in your name again. (No spaces allowed)";
     Color textAreaBackColor = Color.black;
     Color textAreaForeColor = Color.white;
     boolean lineWrap        = true;
@@ -98,25 +98,19 @@ public class CharacterCreation implements ActionListener{
 
     // name validation check
     public boolean nameValidate(String nameInput){
-        // variables for checking spaces in between
-        int nameInputLength = nameInput.length();
-        char[] charCheck = new char[nameInputLength];
-        // getting individual characters for string
-        for(int i = 0; i < nameInputLength; i++){
-            charCheck[i] = nameInput.charAt(i);
-        }
-
         // return status
         boolean rtnStatus = true;
-        // flagging for valid checks
-        int flag = 0;
+
+        // variables for checking spaces in between
+        int nameInputLength = nameInput.length();
 
         // same meaning for user aspect, but totally different meanings
         if(nameInput.isEmpty() || nameInput.equals(null) || nameInput.equals("")) return false;
         // checking for spaces when size of input is bigger than one
-        for(int i = 0; i < charCheck.length; i++){
-            char trimmedChar = charCheck[i];
-            if(trimmedChar == ' '){
+        for(int i = 0; i < nameInputLength; i++){
+            // getting individual characters
+            char charCheck = nameInput.charAt(i);
+            if(charCheck == ' '){
                 return false;
             }
         }

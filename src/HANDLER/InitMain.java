@@ -6,7 +6,6 @@ import INVENTORY_ENTITY.Inventory;
  * for constructing INGAME uses (LOADING)
  */
 public class InitMain {
-
     public InitMain(Inventory inventory, int mode){
         // constructing INGAME inventory instance
         InGameInventory inGameInventory;

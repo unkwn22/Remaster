@@ -6,7 +6,6 @@ import ITEM_ENTITY.*;
  * individual property
  */
 public class WeaponInventory {
-
     private Weapon weapon;
     private int amount;
 

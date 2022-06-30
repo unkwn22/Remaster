@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CharacterCreation implements ActionListener{
-
     Container container;
 
     // JPanel properties
@@ -85,14 +84,17 @@ public class CharacterCreation implements ActionListener{
         // getting the name input from the user
         String nameInput = inputTextField.getText();
         // validate name method
-        // return status for continue or to catch validtaion
+        // return status for continue or to catch validation
         boolean returnStatus = nameValidate(nameInput);
 
         // user input name judgement
         if(returnStatus == false){
             textArea.setText(validText);
         }else{
-
+            // turning off character creation page
+            inputNamePanel.setVisible(false);
+            // heading to loading screen with valid user name and currently used container
+            LoadingScreen loadingScreen = new LoadingScreen(nameInput, container);
         }
     }
 

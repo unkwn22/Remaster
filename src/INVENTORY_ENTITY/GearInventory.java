@@ -6,9 +6,7 @@ import ITEM_ENTITY.*;
  * individual property
  */
 public class GearInventory {
-
     private Gear gear;
-
     private int amount;
 
     public GearInventory(Gear gear, int amount){

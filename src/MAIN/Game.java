@@ -6,8 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
-public class Game implements ActionListener {
+public class Game extends Exception implements ActionListener {
     // font properties
     String titleFontName    = "Times new Roman";
     int titleFontProperties = Font.PLAIN;
@@ -19,8 +20,6 @@ public class Game implements ActionListener {
 
     // creating a basic frame
     JFrame window;
-    // a container that the window will carry
-    Container container;
 
     // window properties
     int windowWidth       = 800;
@@ -82,10 +81,28 @@ public class Game implements ActionListener {
     Color confirmBtnForeColor  = Color.white;
     String confirmBtnLabel     = "Confirm";
 
+    // loading screen properties
+    JProgressBar progressBar;
+    int barBoundX            = 90;
+    int barBoundY            = 100;
+    int barBoundWidth        = 600;
+    int barBoundHeight       = 50;
+    // default properties for progress bar percentage
+    int beginValue        = 0;
+    int addValue          = 25;
+    // setting percentage boolean
+    boolean stringPaint   = true;
+
+    /*
+     * constructor
+     */
     public Game(){
         createMainPage();
     }
 
+    /*
+     * screen
+     */
     // main page screen
     public void createMainPage(){
         // creating a JFrame panel
@@ -104,7 +121,7 @@ public class Game implements ActionListener {
         // when wanting to create a new components on top of the JFrame, the JFrame must have a container
         // so were letting the container know that were going to make the JFrame as a base layout component
         // so now letting the container constructor know that the window Content pane is going to be a new Container object
-        container = window.getContentPane();
+//        container = window.getContentPane();
 
         // creating a title name panel
         titleNamePanel = new JPanel();
@@ -151,8 +168,19 @@ public class Game implements ActionListener {
         startButtonPanel.add(exitButton);
 
         // adding a panel
-        container.add(titleNamePanel);
-        container.add(startButtonPanel);
+        window.add(titleNamePanel);
+        window.add(startButtonPanel);
+//        container.add(titleNamePanel);
+//        container.add(startButtonPanel);
+
+        // creating progressbar
+        progressBar = new JProgressBar();
+        // creating progress bar bounds
+        progressBar.setBounds(barBoundX, barBoundY, barBoundWidth, barBoundHeight);
+        // adding percentage to progress bar
+        progressBar.setStringPainted(stringPaint);
+        window.add(progressBar);
+        progressBar.setVisible(false);
     }
 
     // characterCreation page screen
@@ -163,7 +191,8 @@ public class Game implements ActionListener {
         inputNamePanel.setBackground(inputPanelBackColor);
         // setting the panel layout
         inputNamePanel.setLayout(gridLayout);
-        container.add(inputNamePanel);
+        window.add(inputNamePanel);
+//        container.add(inputNamePanel);
 
         // textArea
         textArea = new JTextArea(askText);
@@ -188,7 +217,25 @@ public class Game implements ActionListener {
         inputNamePanel.add(confirmBtn);
     }
 
-    // title screen handler
+    // loading page screen
+    public void createLoadingPage(){
+        progressBar.setVisible(true);
+        // localizing begin progress percentage
+
+        // looping until progress Stat is equal to 100
+        while(beginValue <= 100){
+            try{
+                fillGage();
+                Thread.sleep(1000);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /*
+     * screen handler
+     */
     @Override
     public void actionPerformed(ActionEvent event) {
         // getting the button name
@@ -221,6 +268,10 @@ public class Game implements ActionListener {
                 }else{
                     // turning off character creation page
                     inputNamePanel.setVisible(false);
+                    // loading page handler
+                    // resetting begin value
+                    beginValue = 0;
+                    createLoadingPage();
                 }
                 break;
             default:
@@ -228,10 +279,9 @@ public class Game implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        new Game();
-    }
-
+    /*
+     * user custom method
+     */
     // name validation check
     public boolean nameValidate(String nameInput){
         // return status
@@ -250,7 +300,19 @@ public class Game implements ActionListener {
                 return false;
             }
         }
-
         return rtnStatus;
+    }
+
+    // filling progress bar
+    public void fillGage(){
+        progressBar.setValue(beginValue);
+        beginValue += addValue;
+    }
+
+    /*
+     * main
+     */
+    public static void main(String[] args) {
+        new Game();
     }
 }

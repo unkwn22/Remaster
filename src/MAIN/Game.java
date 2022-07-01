@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Game implements ActionListener {
-    CharacterCreation characterCreation;
-
     // font properties
     String titleFontName    = "Times new Roman";
     int titleFontProperties = Font.PLAIN;
@@ -61,7 +59,35 @@ public class Game implements ActionListener {
     String loadButtonLabel  = "Load";
     String exitButtonLabel  = "Exit";
 
+    // character creation properties
+    JPanel inputNamePanel;
+    int inputNameBoundX       = 100;
+    int inputNameBoundY       = 100;
+    int inputNameBoundWidth   = 600;
+    int inputNameBoundHeight  = 250;
+    Color inputPanelBackColor = Color.blue;
+
+    // JTextArea properties
+    JTextArea textArea, inputTextField;
+    String askText          = "Type in your name. (No spaces allowed)";
+    String validText        = "Invalid name, Please type in your name again. (No spaces allowed)";
+    Color textAreaBackColor = Color.black;
+    Color textAreaForeColor = Color.white;
+    boolean lineWrap        = true;
+    boolean setDisable      = false;
+
+    // JButton properties
+    JButton confirmBtn;
+    Color confirmBtnBackColor  = Color.black;
+    Color confirmBtnForeColor  = Color.white;
+    String confirmBtnLabel     = "Confirm";
+
     public Game(){
+        createMainPage();
+    }
+
+    // main page screen
+    public void createMainPage(){
         // creating a JFrame panel
         window = new JFrame();
         // setting the size of the panel
@@ -129,6 +155,39 @@ public class Game implements ActionListener {
         container.add(startButtonPanel);
     }
 
+    // characterCreation page screen
+    public void createCharacterPage(){
+        // input name panel
+        inputNamePanel = new JPanel();
+        inputNamePanel.setBounds(inputNameBoundX, inputNameBoundY, inputNameBoundWidth, inputNameBoundHeight);
+        inputNamePanel.setBackground(inputPanelBackColor);
+        // setting the panel layout
+        inputNamePanel.setLayout(gridLayout);
+        container.add(inputNamePanel);
+
+        // textArea
+        textArea = new JTextArea(askText);
+        textArea.setBackground(textAreaBackColor);
+        textArea.setForeground(textAreaForeColor);
+        textArea.setFont(normalFont);
+        textArea.setLineWrap(lineWrap);
+        textArea.setEnabled(setDisable);
+        inputNamePanel.add(textArea);
+
+        // JTextField
+        inputTextField = new JTextArea();
+        inputNamePanel.add(inputTextField);
+
+        // confirm button
+        confirmBtn = new JButton(confirmBtnLabel);
+        confirmBtn.setBackground(confirmBtnBackColor);
+        confirmBtn.setForeground(confirmBtnForeColor);
+        confirmBtn.setFont(normalFont);
+        // getting the inputTextField text when confirm button is clicked
+        confirmBtn.addActionListener(this);
+        inputNamePanel.add(confirmBtn);
+    }
+
     // title screen handler
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -141,7 +200,7 @@ public class Game implements ActionListener {
                 titleNamePanel.setVisible(false);
                 startButtonPanel.setVisible(false);
                 // moving to character creation page
-                characterCreation = new CharacterCreation(container);
+                createCharacterPage();
                 break;
             case "Load":
                 titleNamePanel.setVisible(false);
@@ -149,11 +208,49 @@ public class Game implements ActionListener {
                 break;
             case "Exit": System.exit(0);
                 break;
+            case "Confirm":
+                // getting the name input from the user
+                String nameInput = inputTextField.getText();
+                // validate name method
+                // return status for continue or to catch validation
+                boolean returnStatus = nameValidate(nameInput);
+
+                // user input name judgement
+                if(returnStatus == false){
+                    textArea.setText(validText);
+                }else{
+                    // turning off character creation page
+                    inputNamePanel.setVisible(false);
+                }
+                break;
+            default:
+                break;
         }
     }
 
     public static void main(String[] args) {
-
         new Game();
+    }
+
+    // name validation check
+    public boolean nameValidate(String nameInput){
+        // return status
+        boolean rtnStatus = true;
+
+        // variables for checking spaces in between
+        int nameInputLength = nameInput.length();
+
+        // same meaning for user aspect, but totally different meanings
+        if(nameInput.isEmpty() || nameInput.equals(null) || nameInput.equals("")) return false;
+        // checking for spaces when size of input is bigger than one
+        for(int i = 0; i < nameInputLength; i++){
+            // getting individual characters
+            char charCheck = nameInput.charAt(i);
+            if(charCheck == ' '){
+                return false;
+            }
+        }
+
+        return rtnStatus;
     }
 }

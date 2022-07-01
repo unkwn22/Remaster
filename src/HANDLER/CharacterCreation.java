@@ -78,7 +78,7 @@ public class CharacterCreation implements ActionListener{
         inputNamePanel.add(confirmBtn);
     }
 
-    // actionListener method
+    // character screen handler
     @Override
     public void actionPerformed(ActionEvent e) {
         // getting the name input from the user

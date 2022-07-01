@@ -4,7 +4,6 @@ import INVENTORY_ENTITY.*;
 import ITEM_ENTITY.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /*
  * this is where all the INGAME (instance) functions are held
